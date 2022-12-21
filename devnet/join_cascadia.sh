@@ -8,8 +8,8 @@ export NODE_HOME=$HOME/.cascadiad
 export CHAIN_ID=cascadia_9000-1
 export NODE_MONIKER=my-node # only really need to change this one
 export BINARY=cascadiad
-export SEEDS="f92b6a33d8c71f087e8e38211dd5867db5ae5c4f@3.85.131.44:26656,a255b7ae07c2ec85aaa00b6733361e890e1a0350@54.210.84.15:26656"
-export PERSISTENT_PEERS="f92b6a33d8c71f087e8e38211dd5867db5ae5c4f@3.85.131.44:26656,a255b7ae07c2ec85aaa00b6733361e890e1a0350@54.210.84.15:26656"
+export SEEDS="42792ba4376fcc0b5b469b05668b1fad51589d25@18.211.35.61:26656,dbf158f0e1d94f5bee310ed298becc0c7097545c@44.211.12.215:26656"
+export PERSISTENT_PEERS="42792ba4376fcc0b5b469b05668b1fad51589d25@18.211.35.61:26656,dbf158f0e1d94f5bee310ed298becc0c7097545c@44.211.12.215:26656"
 
 ##### OPTIONAL STATE SYNC CONFIGURATION ###
 
@@ -114,21 +114,6 @@ sudo systemctl daemon-reload
 
 echo ">>>>>>>>>>> starting the daemon..."
 sudo systemctl start $NODE_MONIKER.service
-
-sudo systemctl restart systemd-journald
-
-cascadiad tx staking create-validator \
-  --amount=1000000uCC \
-  --pubkey=$(cascadiad tendermint show-validator) \
-  --moniker="validator" \
-  --chain-id=$CHAIN_ID  \
-  --commission-rate="0.10" \
-  --commission-max-rate="0.20" \
-  --commission-max-change-rate="0.01" \
-  --min-self-delegation="1000000" \
-  --gas="auto" \
-  --gas-prices="0.0025uCC" \
-  --from=validator
 
 echo "***********************"
 echo "find logs like this:"
